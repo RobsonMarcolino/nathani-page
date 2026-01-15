@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, TrendingDown, HelpCircle } from 'lucide-react';
+import TechBg from './tech_bg_audience.png';
 
 const audiences = [
     {
@@ -22,9 +23,16 @@ const audiences = [
 
 const TargetAudience = () => {
     return (
-        <section className="py-24 bg-secondary border-t border-white/5 relative overflow-hidden">
-            {/* Background Gradient */}
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+        <section id="about" className="py-24 bg-secondary border-t border-white/5 relative overflow-hidden">
+            {/* Background Image & Effects */}
+            <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+                <img
+                    src={TechBg}
+                    alt="Background Tech"
+                    className="w-full h-full object-cover mix-blend-screen"
+                />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-b from-secondary via-transparent to-secondary z-0 pointer-events-none"></div>
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center max-w-3xl mx-auto mb-16">
@@ -42,7 +50,7 @@ const TargetAudience = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 }}
-                            className="bg-white/5 p-8 rounded-2xl shadow-xl border border-white/10 hover:border-primary/40 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10"
+                            className="bg-white/5 p-8 rounded-[2rem] shadow-xl border border-white/10 hover:border-primary/40 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 backdrop-blur-md"
                         >
                             <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-6 shadow-[0_0_15px_rgba(255,69,0,0.3)]">
                                 {item.icon}

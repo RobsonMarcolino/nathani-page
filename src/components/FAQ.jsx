@@ -29,7 +29,7 @@ const FAQ = () => {
     };
 
     return (
-        <section className="py-24 bg-secondary border-t border-white/5">
+        <section className="py-24 bg-transparent border-t border-white/5 relative z-10">
             <div className="container mx-auto px-6 max-w-4xl">
                 <div className="text-center mb-16">
                     <span className="text-primary text-sm font-bold tracking-widest uppercase mb-3 block">Dúvidas Frequentes</span>
@@ -38,7 +38,7 @@ const FAQ = () => {
 
                 <div className="space-y-4">
                     {faqs.map((faq, index) => (
-                        <div key={index} className="border border-white/10 rounded-xl overflow-hidden hover:border-primary/30 transition-colors bg-white/5">
+                        <div key={index} className="border border-white/10 rounded-2xl overflow-hidden hover:border-primary/40 transition-colors bg-white/5 backdrop-blur-lg">
                             <button
                                 onClick={() => toggleAccordion(index)}
                                 className="w-full bg-transparent p-6 flex items-center justify-between text-left focus:outline-none"

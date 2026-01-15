@@ -26,14 +26,25 @@ const testimonials = [
     }
 ];
 
+import TechBg from './footer_bg.png';
+
 const Testimonials = () => {
     return (
-        <section className="py-24 bg-secondary relative overflow-hidden text-white border-t border-white/5">
-            {/* Background Decoration */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px]"></div>
-                <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        <section className="py-24 bg-secondary relative overflow-hidden text-white" id="results">
+            {/* Standard Tech Background - High Visibility */}
+            <div className="absolute inset-0 z-0 opacity-100 pointer-events-none">
+                <img src={TechBg} alt="" className="w-full h-full object-cover scale-110" />
+                {/* Gradients to blend smoothly */}
+                <div className="absolute inset-0 bg-gradient-to-b from-secondary via-transparent to-secondary opacity-90"></div>
+            </div>
+
+            <div className="container mx-auto px-6 relative z-10">
+                {/* Background Decoration */}
+                <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px]"></div>
+                    <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+                </div>
             </div>
 
             <div className="container mx-auto px-6 relative z-10">
@@ -68,7 +79,7 @@ const Testimonials = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 }}
-                            className="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-2xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 relative group"
+                            className="bg-white/5 backdrop-blur-xl p-8 rounded-[2rem] border border-white/10 shadow-2xl hover:border-primary/40 transition-all duration-300 hover:-translate-y-2 relative group overflow-hidden"
                         >
                             <div className="absolute -top-4 -right-4 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-lg transform rotate-12 group-hover:rotate-0 transition-transform">
                                 <Quote size={20} fill="currentColor" />

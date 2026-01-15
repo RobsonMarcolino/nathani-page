@@ -1,10 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, BarChart2, Instagram, Linkedin, Phone } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+
+import NavBg from './navbar_bg.png';
+import FooterBg from './footer_bg.png';
+import FloatingWhatsApp from './FloatingWhatsApp';
+import SpotlightFollower from './SpotlightFollower';
 
 const Layout = ({ children }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const footerRef = useRef(null);
+
+    const { scrollYProgress } = useScroll({
+        target: footerRef,
+        offset: ["start end", "end start"]
+    });
+
+    const yFooter = useTransform(scrollYProgress, [0, 1], [-50, 50]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,15 +31,23 @@ const Layout = ({ children }) => {
         <div className="min-h-screen flex flex-col bg-secondary font-sans selection:bg-primary/30 selection:text-white">
             <header
                 className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-in-out ${isScrolled
-                    ? 'top-4 w-[90%] md:w-[85%] max-w-6xl rounded-2xl bg-secondary/80 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] py-3 px-6 md:px-8'
-                    : 'top-0 w-full bg-transparent py-6 px-6 md:px-12 border-b border-white/0'
-                    }`}
+                    ? 'top-4 w-[90%] md:w-[70%] lg:w-[60%] py-2 px-6 shadow-[0_8px_32px_rgba(0,0,0,0.5)] bg-[#0A0A0A]/90 backdrop-blur-xl border-primary/20'
+                    : 'top-6 w-[95%] md:w-[85%] lg:w-[80%] py-3 px-8 bg-transparent border-white/5 backdrop-blur-sm'
+                    } rounded-full border flex justify-between items-center overflow-hidden group hover:border-primary/40`}
             >
-                <div className="flex justify-between items-center text-white relative">
+                {/* Custom Tech Texture Background */}
+                <div className={`absolute inset-0 z-0 transition-opacity duration-500 pointer-events-none ${isScrolled ? 'opacity-30' : 'opacity-10'}`}>
+                    <img src={NavBg} alt="" className="w-full h-full object-cover mix-blend-overlay filter contrast-125" />
+                </div>
+
+                {/* Glass Reflection Top */}
+                <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10"></div>
+
+                <div className="flex justify-between items-center w-full relative">
                     {/* Brand / Logo */}
                     {/* Brand / Logo */}
                     <a href="#" className="block hover:opacity-80 transition-opacity">
-                        <img src="/src/components/LOGO.png" alt="Nathani Consultoria" className="h-16 md:h-20 w-auto object-contain" />
+                        <img src="/src/components/LOGO.png" alt="Nathani Consultoria" className="h-12 md:h-16 w-auto object-contain" />
                     </a>
 
                     {/* Desktop Navigation */}
@@ -52,10 +73,12 @@ const Layout = ({ children }) => {
                             href="https://wa.me/5531999035404"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-primary hover:bg-primary-hover text-white text-sm font-bold px-6 py-2.5 rounded-xl transition-all shadow-[0_4px_14px_rgba(255,69,0,0.4)] hover:shadow-[0_6px_20px_rgba(255,69,0,0.6)] hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
+                            className="group relative px-6 py-2.5 bg-black/50 overflow-hidden rounded-full transition-all duration-300 hover:scale-105 border border-orange-500/50 hover:border-orange-500 shadow-[0_0_15px_rgba(255,100,0,0.15)] hover:shadow-[0_0_30px_rgba(255,100,0,0.3)] flex items-center gap-2 text-white font-bold"
                         >
-                            Fale Conosco
-                            <Phone size={16} />
+                            <div className="absolute inset-0 bg-gradient-to-r from-orange-600/20 to-orange-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <span className="relative flex items-center gap-2">
+                                Fale Conosco <Phone size={16} className="group-hover:rotate-12 transition-transform" />
+                            </span>
                         </a>
                     </div>
 
@@ -119,22 +142,35 @@ const Layout = ({ children }) => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
-                                className="bg-primary text-white text-lg font-bold px-8 py-4 rounded-xl mt-6 shadow-[0_10px_40px_rgba(255,69,0,0.4)] flex items-center justify-center gap-3"
+                                className="group relative px-8 py-4 bg-black/50 overflow-hidden rounded-xl mt-6 transition-all duration-300 hover:scale-105 border border-orange-500/50 hover:border-orange-500 shadow-[0_0_20px_rgba(255,100,0,0.15)] hover:shadow-[0_0_40px_rgba(255,100,0,0.3)] flex items-center justify-center gap-3 text-white font-bold"
                             >
-                                <Phone size={20} /> Fale Conosco
+                                <div className="absolute inset-0 bg-gradient-to-r from-orange-600/20 to-orange-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <span className="relative flex items-center gap-3">
+                                    <Phone size={20} /> Fale Conosco
+                                </span>
                             </motion.a>
                         </nav>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            <main className="flex-grow">
+            {/* Extended Footer Background (Covers FAQ + CTA + Footer) */}
+            <motion.div
+                style={{ y: yFooter }}
+                className="absolute bottom-0 left-0 right-0 h-[150vh] md:h-[1200px] z-0 opacity-100 pointer-events-none"
+            >
+                <img src={FooterBg} alt="" className="w-full h-full object-cover scale-110" />
+                {/* Gradient to fade top into background */}
+                <div className="absolute inset-0 bg-gradient-to-b from-secondary via-transparent to-black"></div>
+            </motion.div>
+
+            <main className="flex-grow relative z-10">
                 {children}
             </main>
 
-            <footer className="bg-gradient-to-b from-secondary to-[#050810] text-white py-20 relative overflow-hidden border-t border-white/5">
+            <footer ref={footerRef} className="bg-transparent text-white py-20 relative overflow-hidden border-t border-white/5 z-10">
                 {/* Subtle Grid Pattern Overlay */}
-                <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+                <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:4rem_4rem] z-0 pointer-events-none"></div>
 
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-20 mb-16">
@@ -184,6 +220,10 @@ const Layout = ({ children }) => {
                     </div>
                 </div>
             </footer>
+
+            {/* Global Interactive Elements */}
+            <FloatingWhatsApp />
+            <SpotlightFollower />
         </div>
     );
 };

@@ -15,8 +15,8 @@ export default {
                     hover: '#E03E00',   // Darker Orange Red
                 },
                 secondary: {
-                    DEFAULT: '#020202', // Pure Black (Deep and Dark)
-                    light: '#111111',   // Soft Black
+                    DEFAULT: '#050505', // Slightly Lighter Black (Less Intense)
+                    light: '#1a1a1a',   // Lighter Soft Black
                 },
                 accent: {
                     DEFAULT: '#FF6B00', // Pure Orange
