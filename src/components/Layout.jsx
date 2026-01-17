@@ -177,7 +177,7 @@ const Layout = ({ children }) => {
                         {/* Brand Column */}
                         <div className="col-span-1 md:col-span-2 space-y-6">
                             <a href="#" className="block w-fit">
-                                <img src="/src/components/LOGO.png" alt="Nathani Consultoria" className="h-24 md:h-32 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity" />
+                                <img src={Logo} alt="Nathani Consultoria" className="h-24 md:h-32 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity" />
                             </a>
                             <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
                                 Transformamos dados em estratégias de crescimento previsível. Especialistas em gestão de tráfego pago para negócios que buscam escalar.

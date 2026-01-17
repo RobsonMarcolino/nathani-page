@@ -4,6 +4,8 @@ import { ArrowRight, TrendingUp } from 'lucide-react';
 import TrafegoImage from './hero_3d_v2.png';
 import TitleImage from './ImagemHome.png';
 
+import Logo from './logo.png';
+
 const BentoHero = () => {
     const { scrollY } = useScroll();
     const y = useTransform(scrollY, [0, 1000], [0, 200]);
@@ -47,7 +49,7 @@ const BentoHero = () => {
                         <div className="relative z-10 flex flex-col items-center text-center space-y-8 mt-10">
 
                             {/* Logo */}
-                            <img src="/src/components/LOGO.png" alt="Nathani Consultoria" className="h-16 md:h-24 w-auto drop-shadow-2xl" />
+                            <img src={Logo} alt="Nathani Consultoria" className="h-16 md:h-24 w-auto drop-shadow-2xl" />
 
                             <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 border border-white/10 text-orange-400 text-sm font-semibold tracking-wide backdrop-blur-md shadow-[0_0_20px_rgba(255,165,0,0.1)] hover:shadow-[0_0_30px_rgba(255,165,0,0.2)] transition-all duration-300 transform hover:scale-105 cursor-default">
                                 <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse shadow-[0_0_10px_#FFA500]"></span>
