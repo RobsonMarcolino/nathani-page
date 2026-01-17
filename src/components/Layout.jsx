@@ -47,7 +47,7 @@ const Layout = ({ children }) => {
                     {/* Brand / Logo */}
                     {/* Brand / Logo */}
                     <a href="#" className="block hover:opacity-80 transition-opacity">
-                        <img src="/src/components/LOGO.png" alt="Nathani Consultoria" className="h-12 md:h-16 w-auto object-contain" />
+                        <img src={Logo} alt="Nathani Consultoria" className="h-12 md:h-16 w-auto object-contain" />
                     </a>
 
                     {/* Desktop Navigation */}
