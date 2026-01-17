@@ -6,6 +6,7 @@ import NavBg from './navbar_bg.png';
 import FooterBg from './footer_bg.png';
 import FloatingWhatsApp from './FloatingWhatsApp';
 import SpotlightFollower from './SpotlightFollower';
+import Logo from './logo.png';
 
 const Layout = ({ children }) => {
     const [isScrolled, setIsScrolled] = useState(false);
